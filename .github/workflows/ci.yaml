@@ -9,6 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Branch atual
+        uses: actions/checkout@v4
+        run: |
+          git branch
       - name: Checkout repositório
         uses: actions/checkout@v4
       - name: Atualizando versão no pom.xml
