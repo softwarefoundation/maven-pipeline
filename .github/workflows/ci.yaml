@@ -22,3 +22,4 @@ jobs:
           git add pom.xml
           git commit --amend --no-edit
           grep -E '<version>[0-9]+\.[0-9]+\.[0-9]+</version>' pom.xml
+          git push origin main
