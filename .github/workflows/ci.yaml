@@ -12,7 +12,7 @@ jobs:
       - name: Checkout repositório
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: develop
       - name: Atualizando versão no pom.xml
         run: |
           grep -E '<version>[0-9]+\.[0-9]+\.[0-9]+</version>' pom.xml
@@ -21,5 +21,5 @@ jobs:
           sed -E 's/(<version>)([0-9]+\.[0-9]+\.)([0-9]+)(<\/version>)/echo "\1\2$((\3+1))\4"/ge' pom.xml
           git add pom.xml
           git commit --amend --no-edit
+          git push origin develop
           grep -E '<version>[0-9]+\.[0-9]+\.[0-9]+</version>' pom.xml
-          git push origin main
