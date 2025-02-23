@@ -11,8 +11,9 @@ jobs:
     steps:
       - name: Checkout repositório
         uses: actions/checkout@v4
-        with:
-          ref: task-01
+      - name: Branch atual
+        run: |
+          git branch
       - name: Atualizando versão no pom.xml
         run: |
           grep -E '<version>[0-9]+\.[0-9]+\.[0-9]+</version>' pom.xml
@@ -22,5 +23,5 @@ jobs:
           git add pom.xml
           git log --oneline -10
           git commit -m"Update version pom.xml"
-          git push origin task-01
+          git push
           grep -E '<version>[0-9]+\.[0-9]+\.[0-9]+</version>' pom.xml
