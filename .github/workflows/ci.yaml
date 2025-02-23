@@ -20,5 +20,5 @@ jobs:
           git add pom.xml
           git log --oneline -10
           git commit -m"Update version pom.xml"
-          git push origin ${{ github.ref }}
+          git push
           grep -E '<version>[0-9]+\.[0-9]+\.[0-9]+</version>' pom.xml
