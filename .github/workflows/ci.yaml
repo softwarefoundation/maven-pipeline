@@ -11,4 +11,3 @@ jobs:
     steps:
       - name: Checkout repositório
         uses: actions/checkout@v4
-      - name: Atualizando versão no pom.xml
