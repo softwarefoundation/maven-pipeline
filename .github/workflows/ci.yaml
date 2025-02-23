@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout repositório
         uses: actions/checkout@v4
+        with:
+          ref: main
       - name: Atualizando versão no pom.xml
         run: |
           grep -E '<version>[0-9]+\.[0-9]+\.[0-9]+</version>' pom.xml
