@@ -9,10 +9,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repositório
+      - name: Checkout na branch develop
         uses: actions/checkout@v4
         with:
           ref: develop
+      - name: Versão atual da aplicação
+        run: |
+          VERSION=$(grep -oP '(?<=<version>)[^<]+' pom.xml | sed -n '2p')
+          echo "Versão: $VERSION"
       - name: Atualizando versão no pom.xml
         run: |
           grep -E '<version>[0-9]+\.[0-9]+\.[0-9]+</version>' pom.xml
@@ -21,6 +25,6 @@ jobs:
           sed -Ei 's/(<version>)([0-9]+\.[0-9]+\.)([0-9]+)(<\/version>)/echo "\1\2$((\3+1))\4"/ge' pom.xml
           git add pom.xml
           git log --oneline -10
-          git commit -m"Update version pom.xml"
+          git commit -m"v-${{env.version}}"
           git push origin develop
           grep -E '<version>[0-9]+\.[0-9]+\.[0-9]+</version>' pom.xml
